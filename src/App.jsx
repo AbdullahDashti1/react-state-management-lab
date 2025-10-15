@@ -104,13 +104,22 @@ const App = () => {
     setZombieFighters(mainList);
   };
 
-  const totalStrength = team.reduce((sum, fighter) => sum + fighter.strength, 0);
+  let totalStrength = 0;
+  team.forEach(fighter => {
+    totalStrength += fighter.strength;
+  });
+
+  let totalAgility = 0;
+  team.forEach(fighter => {
+    totalAgility += fighter.agility;
+  });
 
   return (
     <>
       <h1>Zombie Fighters</h1>
       <h2>Money: {money}</h2>
-      <h2>Total Strength: {totalStrength}</h2>
+      <h2>Team Strength: {totalStrength}</h2>
+      <h2>Team Agility: {totalAgility}</h2>
 
       <h2>Team</h2>
       {team.length === 0 ? (
