@@ -1,4 +1,4 @@
-import "./App.css"
+import "./App.css";
 import { useState } from 'react';
 
 const App = () => {
@@ -86,12 +86,11 @@ const App = () => {
       agility: 6,
       img: 'https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/e41f26.png',
     },
-  ]
-  )
+  ]);
 
   const handleAddFighters = (fighter) => {
     if (money < fighter.price) {
-      console.log("Not enough money")
+      console.log("Not enough money");
       return;
     }
 
@@ -105,30 +104,35 @@ const App = () => {
     setZombieFighters(mainList);
   };
 
+  const totalStrength = team.reduce((sum, fighter) => sum + fighter.strength, 0);
+
   return (
     <>
       <h1>Zombie Fighters</h1>
       <h2>Money: {money}</h2>
-      <h2>Team</h2>
+      <h2>Total Strength: {totalStrength}</h2>
 
+      <h2>Team</h2>
       {team.length === 0 ? (
         <p>Pick some team members!</p>
       ) : (
-      <ul>
-        {team.map((fighter) => (
-          <li>
-            <img src={fighter.img} alt={fighter.name} />
-            <p>{fighter.name}</p>
-            <p>Price: {fighter.price}</p>
-            <p>Strength: {fighter.strength}</p>
-            <p>Agility: {fighter.agility}</p>
-          </li>
-        ))}
-      </ul>
+        <ul>
+          {team.map((fighter) => (
+            <li key={fighter.id}>
+              <img src={fighter.img} alt={fighter.name} />
+              <p>{fighter.name}</p>
+              <p>Price: {fighter.price}</p>
+              <p>Strength: {fighter.strength}</p>
+              <p>Agility: {fighter.agility}</p>
+            </li>
+          ))}
+        </ul>
       )}
+
+      <h2>Available Fighters</h2>
       <ul>
         {zombieFighters.map((fighter) => (
-          <li>
+          <li key={fighter.id}>
             <img src={fighter.img} alt={fighter.name} />
             <p>{fighter.name}</p>
             <p>Price: {fighter.price}</p>
@@ -140,6 +144,6 @@ const App = () => {
       </ul>
     </>
   );
-}
+};
 
-export default App
+export default App;
